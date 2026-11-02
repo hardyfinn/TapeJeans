@@ -1,0 +1,23 @@
+{
+  "slug": "Tapejeans",
+  "name": "Tapejeans",
+  "version": "2.0.0",
+  "license": "GPL-3.0-or-later",
+  "brand": "Haer",
+  "author": "Haer",
+  "authorEmail": "",
+  "authorUrl": "",
+  "pluginUrl": "",
+  "manualUrl": "",
+  "sourceUrl": "https://github.com/hardyfinn/tapejeans",
+  "donateUrl": "",
+  "changelogUrl": "",
+  "modules": [
+    {
+      "slug": "Tapejeans",
+      "name": "Tapejeans",
+      "description": "Tape and microsound: a reel cut into splices, played as genes with vari-speed, morph and slide. Every button combo has its own button, and a display shows the reel",
+      "tags": ["Sampler", "Granular", "Recording", "Delay"]
+    }
+  ]
+}
