@@ -14,7 +14,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 FONT_BOLD = os.environ.get("PANEL_FONT_BOLD", "/usr/share/fonts/opentype/inter/Inter-Bold.otf")
 FONT_MED = os.environ.get("PANEL_FONT_MED", "/usr/share/fonts/opentype/inter/Inter-Medium.otf")
 
-W, H = 152.4, 128.5  # 30 HP
+W, H = 182.88, 128.5  # 36 HP
 
 DENIM = "#2C4766"
 DENIM_DARK = "#22384F"
@@ -61,7 +61,7 @@ def stitch(x1, y1, x2, y2, w=0.3):
         f'stroke-dasharray="1.2 0.8" stroke-linecap="round"/>')
 
 
-def tick(cx, cy, value, label, r0=7.0, r1=8.1, fill=INK, size=1.7):
+def tick(cx, cy, value, label, r0=7.0, r1=8.1, fill=INK, size=2.4):
     """A mark at a knob position (value 0..1 over Rack's -150..+150 degree sweep)."""
     a = math.radians(-150 + 300 * value)
     sx, sy = math.sin(a), -math.cos(a)
@@ -88,27 +88,27 @@ for i in range(-130, 160, 3):
 stitch(2.0, 6.2, W - 2.0, 6.2)
 stitch(2.0, H - 2.2, W - 2.0, H - 2.2)
 stitch(2.0, 50.4, W - 2.0, 50.4)
-stitch(2.0, 89.6, W - 2.0, 89.6)
+stitch(2.0, 93.4, W - 2.0, 93.4)
 
 # title
 add(text("TAPEJEANS", 22.0, 10.7, 4.0, FONT_BOLD, INK, anchor="start", spacing=0.1))
-add(text("reel  /  splice  /  gene", W - 22.0, 10.4, 2.2, FONT_MED, SOFT, anchor="end"))
+add(text("reel  /  splice  /  gene", W - 22.0, 10.4, 2.8, FONT_MED, SOFT, anchor="end"))
 
 # display window
-add(f'<rect x="4.4" y="11.9" width="143.6" height="37.2" rx="1.6" fill="#0E0E12"/>')
+add(f'<rect x="4.4" y="11.9" width="{W - 8.8:.2f}" height="37.2" rx="1.6" fill="#0E0E12"/>')
 
 # knob row
-colX = [14.0, 38.5, 63.0, 89.4, 113.9, 138.4]
-knobY, attY, cvY = 62.0, 77.2, 86.0
+colX = [16.0, 46.0, 76.0, 106.0, 136.0, 166.0]
+knobY, attY, cvY = 62.0, 79.2, 88.0
 names = ["S.O.S.", "GENE SIZE", "VARI-SPEED", "MORPH", "SLIDE", "ORGANIZE"]
 hints = [("input", "reel"), ("splice", "tiny"), ("rev", "fwd"), ("gaps", "layers"), ("start", "end"), ("first", "last")]
 for x, n, (lo, hi) in zip(colX, names, hints):
-    add(text(n, x, 54.0, 2.5, FONT_BOLD, INK, spacing=0.06))
-    add(text(lo, x - 7.8, 70.6, 1.75, FONT_MED, SOFT))
-    add(text(hi, x + 7.8, 70.6, 1.75, FONT_MED, SOFT))
-    add(text("CV", x - 6.6, cvY + 0.7, 1.9, FONT_BOLD, SOFT))
+    add(text(n, x, 54.4, 3.2, FONT_BOLD, INK, spacing=0.05))
+    add(text(lo, x - 9.0, 71.0, 2.4, FONT_MED, SOFT))
+    add(text(hi, x + 9.0, 71.0, 2.4, FONT_MED, SOFT))
+    add(text("CV", x - 7.4, cvY + 1.0, 2.6, FONT_BOLD, SOFT))
 for i in (1, 2, 4):
-    add(text("amt", colX[i] - 6.6, attY + 0.7, 1.75, FONT_MED, SOFT))
+    add(text("amt", colX[i] - 7.4, attY + 0.9, 2.4, FONT_MED, SOFT))
 
 # knob landmarks: Vari-Speed x1 either side, stop at noon; Morph 1/1 and pitch layers
 tick(colX[2], knobY, 0.25, "x1")
@@ -119,44 +119,31 @@ tick(colX[3], knobY, 0.85, "", fill=GENE)
 tick(colX[3], knobY, 0.5, "")
 tick(colX[0], knobY, 1.0, "")
 tick(colX[1], knobY, 0.0, "")
-add(text("CCW = whole splice", colX[1], 72.7, 1.5, FONT_MED, SOFT))
-add(text("noon = stopped", colX[2], 72.7, 1.5, FONT_MED, SOFT))
-add(text("past 1/1 = overlap", colX[3], 72.7, 1.5, FONT_MED, SOFT))
-add(text("moves the gene", colX[4], 72.7, 1.5, FONT_MED, SOFT))
-add(text("picks next splice", colX[5], 72.7, 1.5, FONT_MED, SOFT))
-add(text("what you hear", colX[0], 72.7, 1.5, FONT_MED, SOFT))
+add(text("CCW = whole splice", colX[1], 74.4, 2.2, FONT_MED, SOFT))
+add(text("noon = stopped", colX[2], 74.4, 2.2, FONT_MED, SOFT))
+add(text("past 1/1 = overlap", colX[3], 74.4, 2.2, FONT_MED, SOFT))
+add(text("moves the gene", colX[4], 74.4, 2.2, FONT_MED, SOFT))
+add(text("picks next splice", colX[5], 74.4, 2.2, FONT_MED, SOFT))
+add(text("what you hear", colX[0], 74.4, 2.2, FONT_MED, SOFT))
 
 # buttons
-btnY = 98.0
+btnY = 102.4
 labels = ["REC", "REC NEW", "SPLICE", "NEXT", "DEL MARK", "DEL AUDIO", "CLR MARKS", "CLR REEL", "GAIN"]
-hint = [
-    ["into this splice", "hw: REC"],
-    ["new splice", "hw: hold REC", "+ tap SPLICE"],
-    ["add marker", "hw: SPLICE"],
-    ["next splice", "hw: SHIFT"],
-    ["join with next", "hw: hold SHIFT", "+ tap SPLICE"],
-    ["erase splice", "hw: hold SHIFT", "+ tap REC"],
-    ["hold 1 s", "hw: SHIFT +", "SPLICE 3 s"],
-    ["hold 1 s", "hw: SHIFT +", "REC 3 s"],
-    ["input level", "hw: hold REC", "+ tap SHIFT"],
-]
-for i, (lab, hs) in enumerate(zip(labels, hint)):
-    x = 9.0 + 16.6 * i if i < 8 else 141.8
-    add(text(lab, x, 92.9, 2.15, FONT_BOLD, INK if i < 6 or i == 8 else "#F2A0A0", spacing=0.05))
-    for j, h in enumerate(hs):
-        add(text(h, x, 105.0 + 2.05 * j, 1.55, FONT_MED, SOFT if j == 0 else "#D9C9A6"))
+# one-line hints; the hardware ("hw:") mappings moved to the tooltips and the manual
+hint = ["into this splice", "new splice", "add marker", "next splice", "join with next", "erase splice",
+        "hold 1 s", "hold 1 s", "input level"]
+for i, (lab, h) in enumerate(zip(labels, hint)):
+    x = 12.0 + 19.6 * i if i < 8 else 170.0
+    add(text(lab, x, 97.4, 2.9, FONT_BOLD, INK if i < 6 or i == 8 else "#F2A0A0", spacing=0.04))
+    add(text(h, x, 109.6, 2.2, FONT_MED, SOFT))
 
-# jacks
-jackY = 118.0
-add(f'<rect x="88.6" y="110.0" width="58.0" height="14.6" rx="1.2" fill="{OUTBOX}"/>')
+# ---- jacks ----
+jackY = 120.6
+add(f'<rect x="101.0" y="111.0" width="{W - 105.0:.2f}" height="15.8" rx="1.2" fill="{OUTBOX}"/>')
 for i, lab in enumerate(["IN L", "IN R", "CLK", "PLAY", "REC", "SPLICE", "SHIFT"]):
-    add(text(lab, 9.0 + 11.6 * i, 113.2, 1.95, FONT_BOLD, INK))
-add(text("audio in", 14.8, 124.9, 1.5, FONT_MED, SOFT))
-add(text("gates in", 55.4, 124.9, 1.5, FONT_MED, SOFT))
+    add(text(lab, 14.0 + 13.0 * i, 114.6, 2.9, FONT_BOLD, INK))
 for i, lab in enumerate(["OUT L", "OUT R", "EOSG", "CV OUT"]):
-    add(text(lab, 97.0 + 13.5 * i, 113.2, 1.95, FONT_BOLD, INK))
-add(text("end of gene", 124.0, 124.0, 1.4, FONT_MED, SOFT))
-add(text("env / ramp", 137.5, 124.0, 1.4, FONT_MED, SOFT))
+    add(text(lab, 112.0 + 18.0 * i, 114.6, 2.9, FONT_BOLD, INK))
 
 svg = (
     f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}mm" height="{H}mm" '
