@@ -603,12 +603,12 @@ struct TapejeansWidget : ModuleWidget {
 
 		// Positions in mm, matching res/make_panel.py
 		ReelDisplay* d = createWidget<ReelDisplay>(mm2px(Vec(5.0, 12.5)));
-		d->box.size = mm2px(Vec(142.4, 36.0));
+		d->box.size = mm2px(Vec(172.9, 36.0));
 		d->module = module;
 		addChild(d);
 
-		const float colX[6] = {14.0, 38.5, 63.0, 89.4, 113.9, 138.4};
-		const float knobY = 62.0, attY = 77.2, cvY = 86.0;
+		const float colX[6] = {16.0, 46.0, 76.0, 106.0, 136.0, 166.0};
+		const float knobY = 62.0, attY = 79.2, cvY = 88.0;
 		addParam(createParamCentered<RoundLargeBlackKnob>(mm2px(Vec(colX[0], knobY)), module, Tapejeans::SOS_PARAM));
 		addParam(createParamCentered<RoundLargeBlackKnob>(mm2px(Vec(colX[1], knobY)), module, Tapejeans::GENE_PARAM));
 		addParam(createParamCentered<RoundLargeBlackKnob>(mm2px(Vec(colX[2], knobY)), module, Tapejeans::SPEED_PARAM));
@@ -623,9 +623,9 @@ struct TapejeansWidget : ModuleWidget {
 			addInput(createInputCentered<PJ301MPort>(mm2px(Vec(colX[i], cvY)), module, cvIn[i]));
 
 		// buttons
-		const float btnY = 98.0;
+		const float btnY = 102.4;
 		for (int i = 0; i < 8; i++) {
-			float x = 9.0 + 16.6 * i;
+			float x = 12.0 + 19.6 * i;
 			if (i < 2 || i == 7)
 				addParam(createLightParamCentered<VCVLightBezel<RedLight>>(mm2px(Vec(x, btnY)), module, Tapejeans::REC_BUTTON + i, Tapejeans::REC_LIGHT + i));
 			else if (i < 4)
@@ -633,18 +633,18 @@ struct TapejeansWidget : ModuleWidget {
 			else
 				addParam(createLightParamCentered<VCVLightBezel<YellowLight>>(mm2px(Vec(x, btnY)), module, Tapejeans::REC_BUTTON + i, Tapejeans::REC_LIGHT + i));
 		}
-		addParam(createParamCentered<RoundSmallBlackKnob>(mm2px(Vec(141.8, btnY)), module, Tapejeans::GAIN_PARAM));
-		addChild(createLightCentered<SmallLight<GreenRedLight>>(mm2px(Vec(147.0, btnY - 4.5)), module, Tapejeans::LEVEL_LIGHT));
+		addParam(createParamCentered<RoundSmallBlackKnob>(mm2px(Vec(170.0, btnY)), module, Tapejeans::GAIN_PARAM));
+		addChild(createLightCentered<SmallLight<GreenRedLight>>(mm2px(Vec(175.6, btnY - 4.6)), module, Tapejeans::LEVEL_LIGHT));
 
 		// jacks
-		const float jackY = 118.0;
+		const float jackY = 120.6;
 		const int ins[7] = {Tapejeans::IN_L_INPUT, Tapejeans::IN_R_INPUT, Tapejeans::CLOCK_INPUT, Tapejeans::PLAY_INPUT, Tapejeans::REC_INPUT, Tapejeans::SPLICE_INPUT, Tapejeans::SHIFT_INPUT};
 		for (int i = 0; i < 7; i++)
-			addInput(createInputCentered<PJ301MPort>(mm2px(Vec(9.0 + 11.6 * i, jackY)), module, ins[i]));
+			addInput(createInputCentered<PJ301MPort>(mm2px(Vec(14.0 + 13.0 * i, jackY)), module, ins[i]));
 		const int outs[4] = {Tapejeans::OUT_L_OUTPUT, Tapejeans::OUT_R_OUTPUT, Tapejeans::EOSG_OUTPUT, Tapejeans::CV_OUTPUT};
 		for (int i = 0; i < 4; i++)
-			addOutput(createOutputCentered<PJ301MPort>(mm2px(Vec(97.0 + 13.5 * i, jackY)), module, outs[i]));
-		addChild(createLightCentered<SmallLight<YellowLight>>(mm2px(Vec(127.5, jackY - 5.6)), module, Tapejeans::EOSG_LIGHT));
+			addOutput(createOutputCentered<PJ301MPort>(mm2px(Vec(112.0 + 18.0 * i, jackY)), module, outs[i]));
+		addChild(createLightCentered<SmallLight<YellowLight>>(mm2px(Vec(153.0, jackY - 3.6)), module, Tapejeans::EOSG_LIGHT));
 	}
 
 	void appendContextMenu(Menu* menu) override {
