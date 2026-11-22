@@ -112,3 +112,7 @@ elsewhere:
 - At Gene Size CCW, a gene lasts one pass of the splice at the current speed.
 - No phase-modulation input (`pmin`), and no multiple reels or Reel Mode. Use Load and Save instead.
 - The reel uses about 67 MB of memory per module, because a full 2.9-minute reel is allocated up front.
+
+## Licence
+
+MIT (see `LICENSE.txt`): you're free to use, change, port (VST/CLAP, other platforms, hardware) and share this code, as long as the copyright notice and licence text come along. Fonts on the panel (Inter, Climate Crisis) are under the SIL Open Font Licence.
